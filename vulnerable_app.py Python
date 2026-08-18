@@ -1,0 +1,36 @@
+"""
+APLICAÇÃO VULNERÁVEL - NÃO UTILIZAR EM PRODUÇÃO!!!!
+"""
+
+from flask import Flask, request, render_template_string
+import sqlite3
+
+app = Flask(__name__)
+
+# Credenciais hardcoded (má prática)
+DB_PASSWORD = "password123"
+
+@app.route("/login", methods=["POST"])
+def login():
+    username = request.form.get("username")
+    password = request.form.get("password")
+
+    # SQL Injection
+    conn = sqlite3.connect("users.db")
+    cursor = conn.cursor()
+    query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
+    cursor.execute(query)
+    user = cursor.fetchone()
+
+    if user:
+        # XSS refletido
+        return render_template_string(f"<h1>Bem-vindo {username}</h1>")
+    return "Login falhado"
+
+@app.route("/search")
+def search():
+    q = request.args.get("q", "")
+    return f"<h2>Resultados para: {q}</h2>"   # XSS
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0")   # Debug + binding inseguro
