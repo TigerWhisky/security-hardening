@@ -9,8 +9,6 @@ Este repositório demonstra a aplicação prática de políticas de ciberseguran
 - Identificação e mitigação de vulnerabilidades do **OWASP Top 10**
 - Exemplos reais de código vulnerável vs código seguro
 
-Desenvolvido para consolidar competências práticas de cibersegurança e complementar certificações Cisco e experiência profissional em ambientes de infraestrutura crítica.
-
 ---
 
 ## Objetivos
@@ -63,7 +61,8 @@ sudo ./scripts/harden_ufw.sh
 # Executar auditoria
 sudo ./scripts/audit_system.sh
 
-Nota: Os scripts devem ser executados com privilégios de root e testados preferencialmente em ambiente de laboratório ou máquina virtual.
+Nota: Os scripts devem ser executados com privilégios de root e testados preferencialmente
+em ambiente de laboratório ou máquina virtual.
 
 Relatório OWASP Top 10
 O ficheiro principal de análise encontra-se em:
